@@ -2,15 +2,6 @@
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
-    columns:
-      - name: id
-        description: "The primary key for this table"
-        data_tests:
-          - unique
-          - not_null
-
   - name: my_second_dbt_model
     description: "A starter dbt model"
     columns:
@@ -19,3 +10,16 @@ models:
         data_tests:
           - unique
           - not_null
+
+sources:         
+  - name: staging 
+    database: db1
+    schema: source
+    tables:
+       - name: employees 
+       - name: countries 
+       - name: DEPARTMENTS
+       - name: LOCATIONS
+       - name: CUSTOMER_INFO
+       - name: ORDER_INFO
+       - name: SALES_INFO
