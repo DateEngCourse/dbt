@@ -2,14 +2,36 @@
 version: 2
 
 models:
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
+  - name: customer
     columns:
-      - name: id
-        description: "The primary key for this table"
+      - name: CUSTOMER_ID
         data_tests:
           - unique
-          - not_null
+          - not_null     
+      - name: NAME
+        data_tests:
+          - not_null  
+      - name: GENDER
+        data_tests:
+          - accepted_values: 
+              values: ['Male','Female']   
+
+  - name: order_target
+    columns:
+      - name: ORDER_ID
+        data_tests:
+          - unique 
+      - name: CUSTOMER_ID
+        data_tests:
+          - relationships: 
+              to: ref('customer')
+              field: CUSTOMER_ID                             
+
+  - name: sales
+    columns:
+      - name: UNIT_PRICE
+        data_tests:
+          - positive_amount_test
 
 sources:         
   - name: staging 
