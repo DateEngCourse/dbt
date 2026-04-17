@@ -34,3 +34,18 @@ models:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: table
+      +pre_hook: "Insert into audit_log values ('{{ this.name }}','Start',current_timestamp)"
+      +post_hook: "Insert into audit_log values ('{{ this.name }}','Start',current_timestamp)"
+
+snapshots:
+  my_project:
+      +dbt_valid_to_current: "to_date('8888-12-31')"   
+      +snapshot_meta_column_names:   
+          dbt_scd_id: scd_id
+          dbt_updated_at: modified_by
+          dbt_valid_from: start_date
+          dbt_valid_to: end_date
+
+
+data_tests: 
+     +store_failures: true
