@@ -3,18 +3,28 @@ version: 2
 
 models:
   - name: customer
+    description: "This is the target table of Customer"
     columns:
       - name: CUSTOMER_ID
+        description: "This is PK of Customer table"
         data_tests:
           - unique
           - not_null     
       - name: NAME
+        description: "Here we are storing name of the customer"
         data_tests:
           - not_null  
       - name: GENDER
+        description: "This is a Gender column. Here we are expecting MALE and FEMALE values only "
         data_tests:
           - accepted_values: 
               values: ['Male','Female']   
+      - name: AGE
+        description: "This is a Age Column"              
+      - name: REGION
+        description: "Here we are going to store Region values" 
+      - name: update_at
+        description: "This represents time at which data comes" 
 
   - name: order_target
     columns:
@@ -38,10 +48,18 @@ sources:
     database: db1
     schema: source
     tables:
-       - name: employees 
+       - name: employees
+         description: "This is source table of employee details" 
        - name: countries 
        - name: DEPARTMENTS
        - name: LOCATIONS
        - name: CUSTOMER_INFO
+         description: "This is source table of customer details" 
        - name: ORDER_INFO
-       - name: SALES_INFO
+       - name: SALES_INFO     
+
+  - name: project1 
+    database: project1
+    schema: STAGING
+    tables:
+       - name: dep_stage
