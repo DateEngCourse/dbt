@@ -4,7 +4,7 @@
           post_hook="Insert into audit_log values ('emp','End',current_timestamp)") 
 }}
 
-select {{ emp_id_macro('employee_id')  }} employee_id,
+select {{ emp_id('EMPLOYEE_ID') }} EMPLOYEE_ID,
        first_name|| ' ' || last_name emp_name,
        {{ email_id_macro('email') }} email,
        replace(phone_number,'.') ph_number,
